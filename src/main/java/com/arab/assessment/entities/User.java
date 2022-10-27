@@ -23,16 +23,16 @@ public class User {
 	@Column(name = "user_id")
 	private Long id;
 	
-	@Column(nullable = false, unique = true, length = 45)
+	@Column(nullable = false, unique = true, length = 64)
 	private String email;
 	
-	@Column(nullable = false, length = 64)
+	@Column(nullable = false, length = 32)
 	private String password;
 	
-	@Column(nullable = false, name = "first_name", length = 30)
+	@Column(nullable = false, name = "first_name", length = 32)
 	private String firstName;
 	
-	@Column(nullable = false, name = "last_name", length = 30)
+	@Column(nullable = false, name = "last_name", length = 32)
 	private String lastName;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
