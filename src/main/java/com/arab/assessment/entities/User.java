@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -34,6 +35,10 @@ public class User {
 	
 	@Column(nullable = false, name = "last_name", length = 32)
 	private String lastName;
+	
+	@Lob
+	@Column(name = "profile_image")
+	private byte[] profileImage;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(
@@ -80,6 +85,14 @@ public class User {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public byte[] getProfileImage() {
+		return profileImage;
+	}
+
+	public void setProfileImage(byte[] profileImage) {
+		this.profileImage = profileImage;
 	}
 
 	public Set<Role> getRoles() {

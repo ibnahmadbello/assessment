@@ -7,13 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "books")
 public class Book {
 	
-	//TODO cover page image
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "book_id")
@@ -31,11 +31,22 @@ public class Book {
 	@Column(nullable = false, name = "published_date")
 	private Date publishedDate;
 	
-	
+	@Column(nullable = false)
 	private String publisher;
+	
+	@Column(nullable = false)
 	private String author;
-	private Date date_added;
+	
+	@Column(nullable = false, name = "date_added")
+	private Date dateAdded;
+	
+	@Column(nullable = false)
 	private String genre;
+	
+	@Lob
+	@Column(name = "cover_image")
+	private byte[] coverImage;
+	
 	public String getId() {
 		return id;
 	}
@@ -54,17 +65,17 @@ public class Book {
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
-	public String getRevision_number() {
-		return revision_number;
+	public String getRevisionNumber() {
+		return revisionNumber;
 	}
-	public void setRevision_number(String revision_number) {
-		this.revision_number = revision_number;
+	public void setRevision_number(String revisionNumber) {
+		this.revisionNumber = revisionNumber;
 	}
-	public Date getPublished_date() {
-		return published_date;
+	public Date getPublishedDate() {
+		return publishedDate;
 	}
-	public void setPublished_date(Date published_date) {
-		this.published_date = published_date;
+	public void setPublishedDate(Date publishedDate) {
+		this.publishedDate = publishedDate;
 	}
 	public String getPublisher() {
 		return publisher;
@@ -78,11 +89,11 @@ public class Book {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	public Date getDate_added() {
-		return date_added;
+	public Date getDateAdded() {
+		return dateAdded;
 	}
-	public void setDate_added(Date date_added) {
-		this.date_added = date_added;
+	public void setDateAdded(Date dateAdded) {
+		this.dateAdded = dateAdded;
 	}
 	public String getGenre() {
 		return genre;

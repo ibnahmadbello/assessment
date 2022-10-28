@@ -1,6 +1,8 @@
 package com.arab.assessment.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,15 +20,16 @@ public class LibrabrianController {
 	BookRepository bookRepository;
 	
 	@PostMapping("/books/uploadBook")
-	public String uploadBook(@RequestBody Book book) {
+	public ResponseEntity<String> uploadBook(@RequestBody Book book) {
 		bookRepository.save(book);
-		return book.getTitle() + " saved successfully";
+		return new ResponseEntity<>(book.getTitle() + " saved successfully", HttpStatus.OK);
 	}
 	
 	@PutMapping("/books/{id}")
-	public void updateBook(@RequestBody Book book, @PathVariable Integer id) {
+	public ResponseEntity<String> updateBook(@RequestBody Book book, @PathVariable Integer id) {
 		Book existingBook = bookRepository.findById(id).get();
 		bookRepository.save(book);
+		return new ResponseEntity<>(existingBook.getTitle() + "Book updated successfully!", HttpStatus.OK);
 	}
 	
 	@GetMapping("/books/checkedout")
